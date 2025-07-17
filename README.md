@@ -34,7 +34,7 @@ ChromaDB
 bash
 Kopyala
 Düzenle
-git clone https://github.com/kullaniciadi/lexai.git
+git clone https://github.com/Rserhat01/lexai_chatbot.git
 cd lexai
 pip install -r requirements.txt
 .env dosyasını oluşturun:
@@ -69,4 +69,5 @@ Sonuç arayüzde gösterilir
 👤 Geliştirici
 Serhat Bağlam
 [Yönetim Bilişim Sistemleri • Veri Bilimci Adayı]
-LinkedIn
+[LinkedIn
+](https://www.linkedin.com/in/resitserhat)
