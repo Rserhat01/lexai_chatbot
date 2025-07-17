@@ -1,0 +1,10 @@
+streamlit~=1.47.0
+langchain~=0.3.26
+openai
+chromadb
+PyPDF2
+scikit-learn
+transformers~=4.53.2
+torch
+flask
+langchain-community~=0.3.27

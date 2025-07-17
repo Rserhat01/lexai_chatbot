@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>LexAI - Hukuk Asistanı</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f5f5f5, #ffffff);
+      color: #222;
+    }
+
+    header {
+      background-color: #b10000;
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      border-bottom: 3px solid #900;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      display: flex;
+      height: 90vh;
+    }
+
+    .sidebar {
+      width: 20%;
+      background-color: #fafafa;
+      border-right: 1px solid #ddd;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+      color: #b10000;
+    }
+
+    .chat-log-item {
+      background: #fff;
+      padding: 12px 15px;
+      margin-bottom: 10px;
+      border-radius: 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .main {
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .chat-box {
+      margin-bottom: 20px;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .chat-bubble {
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 16px;
+      max-width: 70%;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .chat-bubble.user {
+      background-color: #b10000;
+      color: white;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+
+    .intent-info {
+      font-size: 13px;
+      color: #b10000;
+      margin-top: 5px;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 14px;
+      font-size: 15px;
+      border-radius: 20px;
+      border: 2px solid #b10000;
+      outline: none;
+      transition: 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      box-shadow: 0 0 5px rgba(177, 0, 0, 0.4);
+    }
+
+    button {
+      padding: 13px 24px;
+      background-color: #b10000;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #900000;
+    }
+
+    .reset-link {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .reset-link a {
+      text-decoration: none;
+      color: #b10000;
+      font-weight: 500;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>⚖️ LexAI – Hukuk Asistanı</header>
+
+  <div class="container">
+    <div class="sidebar">
+      <h3>🕘 Sohbet Geçmişi</h3>
+      {% for msg in chat_log %}
+        <div class="chat-log-item">
+          <div><strong>S:</strong> {{ msg.question }}</div>
+          <div><strong>C:</strong> {{ msg.answer }}</div>
+        </div>
+      {% endfor %}
+      <div class="reset-link"><a href="/reset">🔄 Sohbeti Sıfırla</a></div>
+    </div>
+
+    <div class="main">
+      <div>
+        {% if last_qa %}
+          <div class="chat-box">
+            <div class="chat-bubble user"><strong>👤 Kullanıcı:</strong><br>{{ last_qa.question }}</div>
+            <div class="chat-bubble"><strong>⚖️ LexAI Asistan:</strong><br>{{ last_qa.answer }}
+              <div class="intent-info">
+                💼 Alan: {{ last_qa.intent }}<br>
+                🔍 Varlıklar: {{ last_qa.entities }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <form action="/" method="POST" id="chat-form">
+        <input type="text" name="user_input" id="user_input" placeholder="Sorunuzu yazın ve Enter'a basın..." autofocus required>
+        <button type="submit">Gönder</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Enter'a basınca formu gönder
+    document.getElementById("user_input").addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        document.getElementById("chat-form").submit();
+      }
+    });
+  </script>
+
+</body>
+</html>
