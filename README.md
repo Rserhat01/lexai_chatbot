@@ -1,46 +1,72 @@
-# ⚖️ LexAI – Hukuk Destek Chatbotu
+⚖️ LexAI – Türkçe Hukuk Chatbotu
+📚 1200+ sayfalık hukuk dokümanını anlayan, Türkçe sorulara cevap verebilen yapay zekâ destekli bir hukuk asistanı.
 
-LexAI, Türkiye Cumhuriyeti kanunlarına dayalı büyük ölçekli PDF dökümanlarını analiz ederek kullanıcılara doğal dilde hukuki danışmanlık hizmeti sunan bir yapay zeka chatbot projesidir.  
-Projede OpenAI GPT-3.5-Turbo, LangChain, ChromaDB ve modern Flask arayüzü kullanılmaktadır.
 
----
+🚀 Özellikler
+💬 Doğal Dil Anlayışı (Türkçe destekli LLM – OpenAI GPT-3.5 Turbo)
 
-## 🚀 Özellikler
+🧠 NER & Intent Analizi (BERT ile Türkçe varlık tanıma ve niyet sınıflandırma)
 
-- 📄 1000+ sayfalık PDF içeriğiyle etkileşim kurar
-- 🤖 GPT-3.5-Turbo destekli soru-cevap
-- 🧠 Belge tabanlı RAG (Retrieval Augmented Generation)
-- 🗂️ ChromaDB vektör veritabanı ile hızlı arama
-- 🔒 OpenAI API ile güvenli LLM bağlantısı
-- 🎨 Responsive ve animasyonlu Flask + HTML + CSS UI
-- 🟥 Adalet Bakanlığı temalı, oval tasarım ve sade kırmızı-beyaz-siyah stil
-- 📥 PDF yükleme destekli içerik hazırlığı (ingest pipeline)
+📄 PDF tabanlı bilgi çekme (LangChain + ChromaDB ile)
 
----
+🧑‍⚖️ Hukuki içeriklerde bilgi sorgulama
 
-## 🖼️ Arayüz Görselleri
+🖥️ Şık Arayüz: Flask tabanlı, responsive ve Adalet Bakanlığı temasında
 
-<p align="center">
-  <img src="screenshots/chat_demo.gif" width="80%" alt="LexAI Chat Arayüzü">
-</p>
+🐳 Docker desteği: Kolay kurulum ve dağıtım için hazır
 
----
+🛠️ Kullanılan Teknolojiler
+Python
 
-## 📂 Proje Yapısı
+LangChain
 
-```bash
-hukuk_chatbot/
-│
-├── app.py                  # Flask backend
-├── ingest.py               # PDF -> Vektör veritabanı
-├── requirements.txt
-├── Dockerfile
-├── .env
-│
-├── templates/
-│   └── index.html          # Ana arayüz
-├── static/
-│   ├── style.css           # Tasarım dosyası
-│   └── script.js           # Giriş animasyonu
-├── db/                     # Chroma vektör verisi (otomatik oluşur)
-└── pdfs/                   # Yüklenecek PDF klasörü
+OpenAI API
+
+Transformers (HuggingFace)
+
+Flask
+
+Docker
+
+ChromaDB
+
+🧪 Kurulum
+bash
+Kopyala
+Düzenle
+git clone https://github.com/kullaniciadi/lexai.git
+cd lexai
+pip install -r requirements.txt
+.env dosyasını oluşturun:
+
+env
+Kopyala
+Düzenle
+OPENAI_API_KEY=your_api_key
+Docker ile çalıştırmak için:
+bash
+Kopyala
+Düzenle
+docker build -t lexai-chatbot .
+docker run -p 5000:5000 --env-file .env lexai-chatbot
+🧠 Nasıl Çalışır?
+ingest.py ile PDF içeriği vektör tabanına aktarılır
+
+Kullanıcı sorusu alınır
+
+NER & intent çıkarılır
+
+LLM ve bilgi tabanı üzerinden cevap oluşturulur
+
+Sonuç arayüzde gösterilir
+
+🎯 Yol Haritası
+✅ Sabit hukuk botu
+🛠️ [Yolda] Sektör ve veri kaynağı seçilebilen dinamik chatbot yapısı
+📊 Sağlık, finans, eğitim gibi farklı alanlarda yeniden kullanılabilir hale getirme
+
+
+👤 Geliştirici
+Serhat Bağlam
+[Yönetim Bilişim Sistemleri • Veri Bilimci Adayı]
+LinkedIn
